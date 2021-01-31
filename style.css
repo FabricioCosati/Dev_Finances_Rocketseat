@@ -7,7 +7,9 @@
     --red: #e92929;
     
     --purple: #4b185a;
-    --dark-background: #252525
+    --dark-background: #252525;
+
+    --github-icon: url(./assets/gitLogo/github_white.svg);
 }
 
 * {
@@ -296,6 +298,23 @@ footer {
     padding: 4rem 0 2rem;
     color: #f0f2f5;
     opacity: 0.6;
+}
+
+a.github {
+    background-image: var(--github-icon);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 1rem auto;
+    padding: 3rem 1.5rem 0;
+    background-size: 3rem 3rem;
+    display: inline-block;
+
+    opacity: 0.6;
+    transition: opacity .3s;
+}
+
+a.github:hover{
+    opacity: 0.9;
 }
 
 /*=========RESPONSIVE==========*/

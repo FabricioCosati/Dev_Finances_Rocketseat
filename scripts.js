@@ -1,3 +1,6 @@
+function onLoad(){
+    AnimationScript.AnimateAll()
+}
 
 const Storage = {
     get(){
@@ -20,7 +23,7 @@ const Transaction = {
     remove(index){
         Transaction.all.splice(index, 1)
 
-        loadScript.scriptNoAnimate()
+        AnimationScript.AnimateDatas(0)
         App.reload()
     },
 
@@ -144,33 +147,6 @@ const App = {
     }
 }
 
-const loadScript = {
-    loadScript(){
-        const script = document.getElementsByClassName("scriptAnimate")
-        const head= document.getElementsByTagName('head')[0];
-        const newScript= document.createElement('script')
- 
-        script[0].parentNode.removeChild(script[0])
-        newScript.src = 'animateDatas.js'
-        newScript.classList.add('scriptAnimate')
-        newScript.innerHTML = "defer"
-        head.appendChild(newScript)
-     },
- 
-     scriptNoAnimate(){
-         const script = document.getElementsByClassName("scriptAnimate")
-         const head= document.getElementsByTagName('head')[0];
-         const newScript= document.createElement('script')
- 
-         script[0].parentNode.removeChild(script[0])
- 
-         newScript.src = 'noAnimateDatas.js'
-         newScript.classList.add('scriptAnimate')
-         newScript.innerHTML = "defer"
-         head.appendChild(newScript)
-     }
-}
-
 const Form = {
     description: document.getElementById('description'),
     amount: document.getElementById('amount'),
@@ -223,10 +199,91 @@ const Form = {
             //fechar o modal [x]
             DOM.Modal()
             //atualizar os dados [x]
-            loadScript.loadScript()
+            AnimationScript.AnimateDatas(0.8)
 
         } catch (error) {
             alert(error)
+        }
+    }
+}
+
+const AnimationScript = {
+
+    AnimateAll(){
+        const cards = document.querySelectorAll('.card');
+        const datas = document.querySelectorAll('tbody tr, thead tr')
+
+        // variáveis para animação de balance
+        let i = 0
+        let tempoCards = 0.4
+
+        // variáveis para animação dos dados
+        let j = 0
+        let tempoDatas = 0.8
+
+        // animação dos cards principais
+        setInterval(function() {
+            if(cards[i]){
+                cards[i].style.animation = `slide ${tempoCards}s`
+                tempoCards += 0.3
+                i++
+            }
+        })
+
+        // animação dos dados das tabelas
+        setTimeout(function() {
+            setInterval(function () {
+                if(datas[j]){
+                    datas[j].style.animation = `up ${tempoDatas}s`
+                    datas[j].style.opacity = 1
+                    datas[j].style.opacity = AnimationScript.HoverMouse()
+                    tempoDatas += 0.5
+                    j++
+                }
+            })
+        }, 350)
+    },
+    
+    AnimateDatas(timeout){
+        // este arquivo serve para animar apenas os dados das tabelas ao cadastrar uma nova transação
+        setTimeout(function(){
+            const datas = document.querySelectorAll('tbody tr, thead tr')
+            const dataTr = document.querySelectorAll('#data-table tbody tr')
+
+            // variáveis para animação dos dados
+            let i = 0
+            let tempoDatas = timeout
+
+            // animação dos dados das tabelas
+            setInterval(function () {
+                if(datas[i]){
+                    console.log(i, timeout)
+                    if(timeout == 0){
+                        datas[i].style.animation = `up ${timeout}s`
+                    }
+                    else{
+                        datas[i].style.animation = `up ${tempoDatas}s`
+                    }
+                    datas[i].style.opacity = 1
+                    datas[i].style.opacity = AnimationScript.HoverMouse()
+                    tempoDatas += 0.5
+                    i++
+                }
+            })
+        })
+    },
+
+    HoverMouse(){
+        const dataTr = document.querySelectorAll('#data-table tbody tr')
+
+        // reduzir opacidade ao passar o mouse em cima dos dados das tabelas
+        for(let data of dataTr){
+            data.addEventListener("mouseout", function(){
+                data.style.opacity = 1
+            })
+            data.addEventListener("mouseenter", function(){
+                data.style.opacity = 0.8
+            })
         }
     }
 }
