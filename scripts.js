@@ -1,3 +1,4 @@
+
 const Storage = {
     get(){
         return JSON.parse(localStorage.getItem("dev.finances:transactions")) || [] 
@@ -145,30 +146,29 @@ const App = {
 
 const loadScript = {
     loadScript(){
-       const script = document.getElementsByClassName("scriptAnimate")
-       const head= document.getElementsByTagName('head')[0];
-       const newScript= document.createElement('script')
-
-       script[0].parentNode.removeChild(script[0])
-
-       newScript.src = 'animateDatas.js'
-       newScript.classList.add('scriptAnimate')
-       newScript.innerHTML = "defer"
-       head.appendChild(newScript)
-    },
-
-    scriptNoAnimate(){
         const script = document.getElementsByClassName("scriptAnimate")
         const head= document.getElementsByTagName('head')[0];
         const newScript= document.createElement('script')
-
+ 
         script[0].parentNode.removeChild(script[0])
-
-        newScript.src = 'noAnimateDatas.js'
+        newScript.src = 'animateDatas.js'
         newScript.classList.add('scriptAnimate')
         newScript.innerHTML = "defer"
         head.appendChild(newScript)
-    }
+     },
+ 
+     scriptNoAnimate(){
+         const script = document.getElementsByClassName("scriptAnimate")
+         const head= document.getElementsByTagName('head')[0];
+         const newScript= document.createElement('script')
+ 
+         script[0].parentNode.removeChild(script[0])
+ 
+         newScript.src = 'noAnimateDatas.js'
+         newScript.classList.add('scriptAnimate')
+         newScript.innerHTML = "defer"
+         head.appendChild(newScript)
+     }
 }
 
 const Form = {
