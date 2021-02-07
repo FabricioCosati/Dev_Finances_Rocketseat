@@ -9,7 +9,8 @@
     --purple: #4b185a;
     --dark-background: #252525;
 
-    --github-icon: url(./assets/github_white.svg);
+    --github-icon: url(./assets/github.svg);
+    --linkedin-icon: url(./assets/linkedin.svg)
 }
 
 * {
@@ -129,6 +130,34 @@ button:hover {
     opacity: 1;
 }
 
+.order-by {
+    width: 5rem;
+    height: 2rem;
+    outline: none;
+}
+
+/* .order-by {
+    width: 2rem;
+    height: 2rem;
+    align-items: center;
+    font-weight: bold;
+    background-image: var(--side-arrow);
+    background-repeat: no-repeat;
+    padding: 1rem 0.5rem 0;
+    background-size: 2rem;
+    transition: opacity .3s;
+}
+
+.order-by.down {
+    background-image: var(--down-arrow);
+} */
+
+/*=========IMAGES==========*/
+
+/* .order-by img {
+    width: 1.5rem;
+} */
+
 /*=========CARDS==========*/
 
 .card {
@@ -199,6 +228,7 @@ table th {
     padding: 1rem 2rem;
     font-weight: normal;
     text-align: left;
+
 }
 
 td.desription {
@@ -302,19 +332,34 @@ footer {
 
 a.github {
     background-image: var(--github-icon);
+}
+
+a.linkedin {
+    background-image: var(--linkedin-icon);
+}
+
+.links a {
     background-repeat: no-repeat;
     background-size: cover;
     margin: 1rem auto;
     padding: 3rem 1.5rem 0;
     background-size: 3rem 3rem;
     display: inline-block;
+    color: #ffffff;
+
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(352deg) brightness(108%) contrast(103%);
 
     opacity: 0.6;
     transition: opacity .3s;
+
 }
 
-a.github:hover{
-    opacity: 0.9;
+.links a:hover{
+    opacity: 0.4;
+}
+
+.links a {
+    margin: 2rem .5rem .5rem;
 }
 
 /*=========RESPONSIVE==========*/

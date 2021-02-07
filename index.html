@@ -54,9 +54,24 @@
             <table id="data-table">
                 <thead>
                     <tr>
-                        <th>Descrição</th>
-                        <th>Valor</th>
-                        <th>Data</th>
+                        <th>Descrição 
+                            <div>
+                                <button onclick="OrderBy.orderDescription()" class="order-by">Ordernar</button>
+                            </div>
+                        </th>
+
+                        <th>Valor 
+                            <div>
+                                <button onclick="OrderBy.orderAmount()" class="order-by">Ordernar</button>
+                            </div>
+                        </th>
+
+                        <th>Data 
+                            <div>
+                                <button onclick="OrderBy.orderDate()" class="order-by">Ordernar</button>
+                            </div>
+                        </th>
+
                         <th></th>
                     </tr>
                 </thead>
@@ -98,7 +113,12 @@
     </div>
     <footer>
         <p>dev.finance$</p>
-        <a href="https://github.com/FabricioCosati/Dev_Finances_Rocketseat" target="_blank" class="github"></a>
+
+        <div class="links">
+            <a href="https://github.com/FabricioCosati/Dev_Finances_Rocketseat" target="_blank" class="github"></a>
+            <a href="https://www.linkedin.com/in/fabrício-cosati-973a69180/" target="_blank" class="linkedin"></a>
+        </div>
+
     </footer>
 
     <script>

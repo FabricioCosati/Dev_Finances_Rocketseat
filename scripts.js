@@ -1,3 +1,4 @@
+
 function onLoad(){
     AnimationScript.AnimateAll()
 }
@@ -129,13 +130,29 @@ const Utils = {
     }
 }
 
+newDatas = []
+oldDatas = []
+
 const App = {
     init(){
+
         
-        Transaction.all.forEach(DOM.addTransactions)
-
+        if(newDatas.length != 0){
+            if (JSON.stringify(Transaction.all) !== JSON.stringify(newDatas)){
+                Transaction.all = newDatas
+                newDatas = []
+            }
+            else{
+                newDatas = []
+            }
+        }
+        
+        Transaction.all.forEach(function(transaction, index){
+            DOM.addTransactions(transaction, index)
+        })
+        
         DOM.updateBalance()
-
+        
         Storage.set(Transaction.all)
 
     },
@@ -257,7 +274,6 @@ const AnimationScript = {
             // animação dos dados das tabelas
             setInterval(function () {
                 if(datas[i]){
-                    console.log(i, timeout)
                     if(timeout == 0){
                         datas[i].style.animation = `up ${timeout}s`
                     }
@@ -284,6 +300,94 @@ const AnimationScript = {
             data.addEventListener("mouseenter", function(){
                 data.style.opacity = 0.8
             })
+        }
+    }
+}
+
+const OrderBy = {
+    
+    orderDescription(){
+        oldDatas = []
+        if(Transaction.all.length != newDatas.length){
+            
+            for(item of Transaction.all){
+                oldDatas.push(item)
+            }
+            
+            for(item of Transaction.all){
+                newDatas.push(item)
+            }
+            
+            newDatas.sort(function(a, b){
+                if(a.description.toLowerCase() < b.description.toLowerCase()) { return -1; }
+                if(a.description.toLowerCase() > b.description.toLowerCase()) { return 1; }
+            }) 
+            
+            if(JSON.stringify(Transaction.all) == JSON.stringify(newDatas)){ 
+                newDatas.sort(function(a, b){
+                    if(a.description.toLowerCase() > b.description.toLowerCase()) { return -1; }
+                    if(a.description.toLowerCase() < b.description.toLowerCase()) { return 1; }
+                }) 
+            }
+            
+            App.reload()
+            AnimationScript.AnimateDatas(0)
+        }
+    },
+
+    orderAmount(){
+        oldDatas = []
+        if(Transaction.all.length != newDatas.length){
+            for(item of Transaction.all){
+                oldDatas.push(item)
+            }
+
+            for(item of Transaction.all){
+                newDatas.push(item)
+            }
+
+            newDatas.sort(function(a, b){
+                return parseFloat(b.amount) - parseFloat(a.amount);
+            }) 
+
+            if(JSON.stringify(Transaction.all) == JSON.stringify(newDatas)){ 
+                newDatas.sort(function(a, b){
+                    return parseFloat(a.amount) - parseFloat(b.amount);
+                }) 
+            }
+
+            App.reload()
+            AnimationScript.AnimateDatas(0)
+        }
+    },
+
+    orderDate(){
+        oldDatas = []
+        if(Transaction.all.length != newDatas.length){
+            for(item of Transaction.all){
+                oldDatas.push(item)
+            }
+
+            for(item of Transaction.all){
+                newDatas.push(item)
+            }
+
+            newDatas.sort(function(a, b){
+                var aa = a.date.split('/').reverse().join(),
+                bb = b.date.split('/').reverse().join();
+                return aa > bb ? -1 : (aa > bb ? 1 : 0);
+            }) 
+
+            if(JSON.stringify(Transaction.all) == JSON.stringify(newDatas)){ 
+                newDatas.sort(function(a, b){
+                    var aa = a.date.split('/').reverse().join(),
+                    bb = b.date.split('/').reverse().join();
+                    return aa < bb ? -1 : (aa > bb ? 1 : 0);
+                }) 
+            }
+
+            App.reload()
+            AnimationScript.AnimateDatas(0)
         }
     }
 }
