@@ -319,14 +319,13 @@ const OrderBy = {
             }
             
             newDatas.sort(function(a, b){
-                if(a.description.toLowerCase() < b.description.toLowerCase()) { return -1; }
-                if(a.description.toLowerCase() > b.description.toLowerCase()) { return 1; }
-            }) 
+                return a.description.toLowerCase().localeCompare(b.description.toLowerCase())
+               
+            })
             
             if(JSON.stringify(Transaction.all) == JSON.stringify(newDatas)){ 
                 newDatas.sort(function(a, b){
-                    if(a.description.toLowerCase() > b.description.toLowerCase()) { return -1; }
-                    if(a.description.toLowerCase() < b.description.toLowerCase()) { return 1; }
+                    return b.description.toLowerCase().localeCompare(a.description.toLowerCase())
                 }) 
             }
             
@@ -373,16 +372,16 @@ const OrderBy = {
             }
 
             newDatas.sort(function(a, b){
-                var aa = a.date.split('/').reverse().join(),
-                bb = b.date.split('/').reverse().join();
-                return aa > bb ? -1 : (aa > bb ? 1 : 0);
+                var dateA = a.date.split('/').reverse().join(),
+                dateB = b.date.split('/').reverse().join();
+                return dateA > dateB ? -1 : (dateA > dateB ? 1 : 0);
             }) 
 
             if(JSON.stringify(Transaction.all) == JSON.stringify(newDatas)){ 
                 newDatas.sort(function(a, b){
-                    var aa = a.date.split('/').reverse().join(),
-                    bb = b.date.split('/').reverse().join();
-                    return aa < bb ? -1 : (aa > bb ? 1 : 0);
+                    var dateA = a.date.split('/').reverse().join(),
+                    dateB = b.date.split('/').reverse().join();
+                    return dateA < dateB ? -1 : (dateA > dateB ? 1 : 0);
                 }) 
             }
 
