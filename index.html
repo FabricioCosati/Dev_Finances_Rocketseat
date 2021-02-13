@@ -95,9 +95,9 @@
                         </div>
                         <div class="input-group">
                             <label class="sr-only" for="amount">Valor</label>
-                            <input type="numner" id="amount" name="amount" placeholder="0,00" step="0.01">
+                            <input onkeydown="Format.formatMoney(this)" type="numner" id="amount" name="amount" placeholder="0,00" step="0.01">
                         </div>
-                        <small class="help">Use o sinal - (negativo) para despesas e , (vírgula) para casas decimais</small>
+                        <small class="help">Use o sinal - (negativo) atrás do valor</small>
                         <div class="input-group">
                             <label class="sr-only" for="date">Data</label>
                             <input type="date" id="date" name="date">

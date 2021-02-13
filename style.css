@@ -1,13 +1,16 @@
 /*=========GLOBAL==========*/
 
 :root {
-    --dark-blue: #363f5f;
-    --green: #49aa26;
-    --light-green: #3dd705;
+    --background: #202020;
+    --card-background: #494949;
+    --table-background: #3d3d3d;
+    --input-background: #5e5e5e;
+
+    --text-color: #f0f2f5;
+    --transaction-color: #b069c4;
+    --purple: #41224a;
     --red: #e92929;
-    
-    --purple: #4b185a;
-    --dark-background: #252525;
+    --dark-blue: #363f5f;
 
     --github-icon: url(./assets/github.svg);
     --linkedin-icon: url(./assets/linkedin.svg)
@@ -21,7 +24,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: #202020;
+    background-color: var(--background);
 }
 
 .container {
@@ -57,7 +60,7 @@ h2 {
 /*=========HEADER==========*/
 
 header {
-    background-color: #41224a;
+    background-color: var(--purple);
     padding: 2rem 0 10rem;
     text-align: center;
 }
@@ -81,12 +84,12 @@ header {
 /*=========LINKS & BUTTONS==========*/
 
 a {
-    color: #b069c4;
+    color: var(--transaction-color);
     text-decoration: none;
 }
 
 a:hover {
-    color: #d88dec;
+    filter: brightness(1.2);
 }
 
 .button.new {
@@ -109,7 +112,7 @@ button {
 }
 
 button:hover {
-    background-color: #8f47a3;
+    filter: brightness(1.125)
 }
 
 .button.cancel {
@@ -136,36 +139,14 @@ button:hover {
     outline: none;
 }
 
-/* .order-by {
-    width: 2rem;
-    height: 2rem;
-    align-items: center;
-    font-weight: bold;
-    background-image: var(--side-arrow);
-    background-repeat: no-repeat;
-    padding: 1rem 0.5rem 0;
-    background-size: 2rem;
-    transition: opacity .3s;
-}
-
-.order-by.down {
-    background-image: var(--down-arrow);
-} */
-
-/*=========IMAGES==========*/
-
-/* .order-by img {
-    width: 1.5rem;
-} */
-
 /*=========CARDS==========*/
 
 .card {
-    background: #494949;
+    background: var(--card-background);
     padding: 1.5rem 2rem;
     border-radius: .25rem;
     margin-bottom: 2rem;
-    color: #f0f2f5;
+    color: var(--text-color);
     /* animation: slide .4s; */
 }
 
@@ -184,7 +165,8 @@ button:hover {
 }
 
 .card.total {
-    background: #78318b;
+    background: var(--purple);
+    filter: brightness(1.625);
     color: white;
 }
 
@@ -200,7 +182,7 @@ button:hover {
 #data-table {
     width: 100%;
     border-spacing: 0 0.5rem;
-    color: #f0f2f5;
+    color: var(--text-color);
 }
 
 #data-table tr {
@@ -218,17 +200,15 @@ table tbody tr td:last-child {
 }
 
 table tbody td {
-    background: #3d3d3d;
+    background: var(--table-background);
     padding: 1rem 2rem;
 }
 
 table th {
-    background: #3d3d3d;
-
+    background: var(--table-background);
     padding: 1rem 2rem;
     font-weight: normal;
     text-align: left;
-
 }
 
 td.desription {
@@ -270,7 +250,7 @@ td img{
 }
 
 .modal {
-    background-color: #3d3d3d;
+    background-color: var(--table-background);
     padding: 2.4rem;
     width: 90%;
     max-width: 500px;
@@ -293,12 +273,12 @@ input {
     border-radius: 0.2rem;
     padding: 0.8rem;
     width: 100%;
-    background-color: #5e5e5e;
-    color: #f0f2f5;
+    background-color: var(--input-background);
+    color: var(--text-color);
 }
 
 input::placeholder {
-    color: #f0f2f5;
+    color: var(--text-color);
 }
 
 .input-group {
@@ -307,7 +287,7 @@ input::placeholder {
 
 small.help {
     opacity: 0.7;
-    color: #f0f2f5;
+    color: var(--text-color);
 }
 
 .input-group.actions {
@@ -326,7 +306,7 @@ small.help {
 footer {
     text-align: center;
     padding: 4rem 0 2rem;
-    color: #f0f2f5;
+    color: var(--text-color);
     opacity: 0.6;
 }
 
@@ -345,7 +325,7 @@ a.linkedin {
     padding: 3rem 1.5rem 0;
     background-size: 3rem 3rem;
     display: inline-block;
-    color: #ffffff;
+    color: var(--text-color);
 
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(352deg) brightness(108%) contrast(103%);
 

@@ -1,4 +1,7 @@
 
+newDatas = []
+oldDatas = []
+
 function onLoad(){
     AnimationScript.AnimateAll()
 }
@@ -104,6 +107,23 @@ const DOM = {
     }
 }
 
+const Format = {
+    formatMoney(input){
+        
+        setTimeout(function() {
+            let value = input.value
+
+            value = value.replace(/[^0-9-]/g, '').replace(/(?!^)-/g, '')
+            value = Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }).format(value/100)
+
+            input.value = value
+        },1)
+    }
+}
+
 const Utils = {
     currencyFormat(value){
         const signal = Number(value) < 0 ? "-" : ""
@@ -129,9 +149,6 @@ const Utils = {
         return `${date[2]}/${date[1]}/${date[0]}`
     }
 }
-
-newDatas = []
-oldDatas = []
 
 const App = {
     init(){
@@ -170,6 +187,8 @@ const Form = {
     date: document.getElementById('date'),
 
     formGetValues(){
+        Form.amount.value = (Form.amount.value.replace(/[^0-9-]/g, '').replace(/(?!^)-/g, ''))
+        Form.amount.value = (Form.amount.value / 100).toFixed(2)
         return {
             description: Form.description.value,
             amount: Form.amount.value,
